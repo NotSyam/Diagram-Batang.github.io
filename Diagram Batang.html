@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagram Batang Frekuensi Relatif</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .chart-container {
+            position: relative;
+            height: 80vh;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Diagram Batang Frekuensi Relatif<br>Keterampilan Anak Usia 5-6 Tahun</h2>
+        <div class="chart-container">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+
+    <script>
+        const data = [
+            { nilai: 10, frekuensiRelatif: 1.04 },
+            { nilai: 23, frekuensiRelatif: 1.04 },
+            { nilai: 25, frekuensiRelatif: 3.13 },
+            { nilai: 32, frekuensiRelatif: 1.04 },
+            { nilai: 36, frekuensiRelatif: 2.08 },
+            { nilai: 41, frekuensiRelatif: 2.08 },
+            { nilai: 43, frekuensiRelatif: 1.04 },
+            { nilai: 48, frekuensiRelatif: 3.13 },
+            { nilai: 52, frekuensiRelatif: 5.21 },
+            { nilai: 54, frekuensiRelatif: 1.04 },
+            { nilai: 55, frekuensiRelatif: 1.04 },
+            { nilai: 57, frekuensiRelatif: 2.08 },
+            { nilai: 60, frekuensiRelatif: 2.08 },
+            { nilai: 61, frekuensiRelatif: 1.04 },
+            { nilai: 62, frekuensiRelatif: 1.04 },
+            { nilai: 63, frekuensiRelatif: 4.17 },
+            { nilai: 64, frekuensiRelatif: 2.08 },
+            { nilai: 65, frekuensiRelatif: 3.13 },
+            { nilai: 67, frekuensiRelatif: 1.04 },
+            { nilai: 68, frekuensiRelatif: 6.25 },
+            { nilai: 70, frekuensiRelatif: 2.08 },
+            { nilai: 71, frekuensiRelatif: 1.04 },
+            { nilai: 72, frekuensiRelatif: 3.13 },
+            { nilai: 74, frekuensiRelatif: 8.33 },
+            { nilai: 75, frekuensiRelatif: 4.17 },
+            { nilai: 76, frekuensiRelatif: 2.08 },
+            { nilai: 77, frekuensiRelatif: 1.04 },
+            { nilai: 78, frekuensiRelatif: 6.25 },
+            { nilai: 79, frekuensiRelatif: 2.08 },
+            { nilai: 80, frekuensiRelatif: 4.17 },
+            { nilai: 81, frekuensiRelatif: 3.13 },
+            { nilai: 82, frekuensiRelatif: 5.21 },
+            { nilai: 83, frekuensiRelatif: 1.04 },
+            { nilai: 84, frekuensiRelatif: 1.04 },
+            { nilai: 85, frekuensiRelatif: 1.04 },
+            { nilai: 88, frekuensiRelatif: 2.08 },
+            { nilai: 89, frekuensiRelatif: 1.04 },
+            { nilai: 90, frekuensiRelatif: 1.04 },
+            { nilai: 92, frekuensiRelatif: 2.08 },
+            { nilai: 93, frekuensiRelatif: 2.08 },
+            { nilai: 98, frekuensiRelatif: 1.04 }
+        ];
+
+        const ctx = document.getElementById('myChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: data.map(item => item.nilai),
+                datasets: [{
+                    label: 'Frekuensi Relatif (%)',
+                    data: data.map(item => item.frekuensiRelatif),
+                    backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1,
+                    borderRadius: 5,
+                    hoverBackgroundColor: 'rgba(75, 192, 192, 0.9)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return `Frekuensi Relatif: ${context.raw}%`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Frekuensi Relatif (%)',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Nilai Keterampilan',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
